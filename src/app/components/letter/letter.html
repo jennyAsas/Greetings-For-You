@@ -1,0 +1,47 @@
+<div class="letter-container">
+  <!-- Title Screen (3 seconds) -->
+  <div class="intro-screen title-screen" *ngIf="showTitle">
+    <div class="title-content">
+      <h1 class="enchanted-title">A Special Letter For You💜</h1>
+      <div class="magical-glow-circle"></div>
+    </div>
+  </div>
+
+  <!-- Loading Screen (2 seconds) -->
+  <div class="intro-screen loading-screen" *ngIf="showLoading">
+    <div class="loading-content">
+      <p class="loading-text">Opening your letter</p>
+      <div class="loading-dots">
+        <span class="dot" [class.active]="loadingDots[0]">●</span>
+        <span class="dot" [class.active]="loadingDots[1]">●</span>
+        <span class="dot" [class.active]="loadingDots[2]">●</span>
+      </div>
+      <div class="magical-glow-orb"></div>
+    </div>
+  </div>
+
+  <!-- Main Card (appears after intro) -->
+  <div class="main-card-wrapper" *ngIf="showMainCard">
+    <div class="letter-card" [class.open]="isCardOpen">
+      <div class="card-front">
+        <h2>A Special Letter Para sa Imo💜</h2>
+        <p class="tap-hint">Tap to open</p>
+      </div>
+
+      <div class="card-inside">
+        <div class="letter-content">
+          <div class="letter-body">
+            <pre
+              class="letter-text"
+              [class.play]="isTypingActive"
+            ><ng-container *ngFor="let piece of letterCharacters"><br *ngIf="piece.isBreak" class="letter-break" /><span *ngIf="!piece.isBreak" class="letter-char" [style.--i]="piece.index">{{ piece.char }}</span></ng-container></pre>
+          </div>
+
+          <button class="btn-enchanted continue-btn" (click)="scrollToNext()">
+            Lantawa sad Ni Please💜
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
